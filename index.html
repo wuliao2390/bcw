@@ -944,3 +944,14 @@ if (/^https?:$/.test(location.protocol)) try {
 </script>
 </body>
 </html>
+// 假设你的所有交易数据存放在一个叫 entries 的数组里
+entries.push(newEntry);
+
+// 必须将数据转换为字符串存入 localStorage
+localStorage.setItem('bcw_entries', JSON.stringify(entries));
+// 网页加载时读取本地存储
+const savedEntries = localStorage.getItem('bcw_entries');
+if (savedEntries) {
+    entries = JSON.parse(savedEntries); // 恢复数据
+    renderTable(); // 重新渲染表格和总金额
+}
